@@ -38,14 +38,14 @@
     },
     TOU_COLOR: {
       "Off-peak": "#15803d",
-      "Normal": "#d96b43",
+      "Normal": "#2DD4BF",
       "Peak": "#b91c1c",
     },
     COLOR: {
       Healthy: "#15803d",
       Warning: "#b45309",
       Critical: "#b91c1c",
-      accent: "#c85a32",
+      accent: "#14B8A6",
       charcoal: "#1c1917",
     },
     FUELS: {
@@ -1157,8 +1157,8 @@
         datasets: [{
           label: 'Plant Power (kW)',
           data,
-          borderColor: '#C85A32',
-          backgroundColor: 'rgba(200, 90, 50, 0.22)',
+          borderColor: '#14B8A6',
+          backgroundColor: 'rgba(20, 184, 166, 0.22)',
           fill: true,
           tension: 0.35,
           pointRadius: 0,
@@ -1171,7 +1171,7 @@
         plugins: { legend: { display: false } },
         scales: {
           x: { grid: { display: false }, ticks: { color: '#78716C', font: { size: 11 } } },
-          y: { grid: { color: 'rgba(167, 65, 30, 0.1)' }, ticks: { color: '#78716C', font: { size: 11 } } },
+          y: { grid: { color: 'rgba(13, 148, 136, 0.1)' }, ticks: { color: '#78716C', font: { size: 11 } } },
         }
       }
     });
@@ -1187,7 +1187,7 @@
 
     const labels = Object.keys(shareMap);
     const data = labels.map(k => Math.round(shareMap[k]));
-    const palette = ['#C85A32', '#D96B43', '#E27B55', '#B84B24', '#8C3B1E', '#E89C82'];
+    const palette = ['#14B8A6', '#2DD4BF', '#5EEAD4', '#0D9488', '#0F766E', '#99F6E4'];
 
     const canvas = document.getElementById("chart-energy-share");
     if (!canvas) return;
@@ -1295,10 +1295,10 @@
         metricVal = `Health: ${h.health_score}/100`;
       } else if (state.floorMetric === "power") {
         metricVal = `Load: ${fmtNum(live.power_kw || 0)} kW`;
-        badgeColor = (live.power_kw || 0) > 8 ? "#B91C1C" : "#C85A32";
+        badgeColor = (live.power_kw || 0) > 8 ? "#B91C1C" : "#14B8A6";
       } else if (state.floorMetric === "temp") {
         metricVal = `Temp: ${fmtNum(live.temperature_c || 0)} °C`;
-        badgeColor = (live.temperature_c || 0) > 75 ? "#B91C1C" : "#D96B43";
+        badgeColor = (live.temperature_c || 0) > 75 ? "#B91C1C" : "#2DD4BF";
       } else if (state.floorMetric === "vibration") {
         metricVal = `Vib: ${fmtNum(live.vibration_mm_s || 0, 2)} mm/s`;
         badgeColor = (live.vibration_mm_s || 0) > 5.0 ? "#B91C1C" : "#15803D";
@@ -1365,7 +1365,7 @@
     const normalized = Math.min(max, Math.max(min, value));
     const pct = (normalized - min) / (max - min);
 
-    let barColor = "#C85A32";
+    let barColor = "#14B8A6";
     if (critVal !== null && value >= critVal) barColor = "#B91C1C";
     else if (warnVal !== null && value >= warnVal) barColor = "#B45309";
     else barColor = "#15803D";
@@ -1378,7 +1378,7 @@
       data: {
         datasets: [{
           data: [pct, 1 - pct],
-          backgroundColor: [barColor, '#E8D4CC'],
+          backgroundColor: [barColor, '#CCF5EE'],
           borderWidth: 0,
         }]
       },
@@ -1419,12 +1419,12 @@
         datasets: [{
           label: `${m.name} Diagnostic Stress`,
           data: [powerScore, tempScore, vibScore, pfScore, driftScore],
-          backgroundColor: 'rgba(200, 90, 50, 0.25)',
-          borderColor: '#C85A32',
-          pointBackgroundColor: '#C85A32',
+          backgroundColor: 'rgba(20, 184, 166, 0.25)',
+          borderColor: '#14B8A6',
+          pointBackgroundColor: '#14B8A6',
           pointBorderColor: '#FFF',
           pointHoverBackgroundColor: '#FFF',
-          pointHoverBorderColor: '#C85A32',
+          pointHoverBorderColor: '#14B8A6',
           borderWidth: 2,
         }, {
           label: 'Safe Baseline Boundary',
@@ -1443,7 +1443,7 @@
             min: 0,
             max: 100,
             ticks: { display: false, stepSize: 20 },
-            grid: { color: 'rgba(167, 65, 30, 0.15)' },
+            grid: { color: 'rgba(13, 148, 136, 0.15)' },
             pointLabels: { color: '#1C1917', font: { size: 11, weight: '700' } }
           }
         },
@@ -1492,7 +1492,7 @@
         datasets: [{
           label: 'Power Draw (kW)',
           data: powerData,
-          borderColor: '#C85A32',
+          borderColor: '#14B8A6',
           borderWidth: 2,
           pointRadius: 0,
           tension: 0.2,
@@ -1512,7 +1512,7 @@
         plugins: { legend: { position: 'top', labels: { boxWidth: 12, color: '#1C1917' } } },
         scales: {
           x: { grid: { display: false }, ticks: { color: '#78716C', font: { size: 10 } } },
-          y: { grid: { color: 'rgba(167, 65, 30, 0.1)' }, ticks: { color: '#78716C', font: { size: 10 } } }
+          y: { grid: { color: 'rgba(13, 148, 136, 0.1)' }, ticks: { color: '#78716C', font: { size: 10 } } }
         }
       }
     });
@@ -1577,7 +1577,7 @@
         },
         scales: {
           x: { grid: { display: false }, ticks: { color: '#78716C', font: { size: 10 } } },
-          y: { grid: { color: 'rgba(167, 65, 30, 0.1)' }, ticks: { color: '#78716C', font: { size: 10 } } }
+          y: { grid: { color: 'rgba(13, 148, 136, 0.1)' }, ticks: { color: '#78716C', font: { size: 10 } } }
         }
       }
     });
@@ -1606,7 +1606,7 @@
         plugins: { legend: { display: false } },
         scales: {
           x: { grid: { display: false }, ticks: { color: '#1C1917', font: { weight: '700' } } },
-          y: { grid: { color: 'rgba(167, 65, 30, 0.1)' }, ticks: { color: '#78716C' } }
+          y: { grid: { color: 'rgba(13, 148, 136, 0.1)' }, ticks: { color: '#78716C' } }
         }
       }
     });
@@ -1626,7 +1626,7 @@
 
     const sortedDates = [...dateSet].sort();
     const machineNames = MACHINES.map(m => m.name);
-    const palette = ['#C85A32', '#D96B43', '#E27B55', '#B84B24', '#8C3B1E', '#E89C82'];
+    const palette = ['#14B8A6', '#2DD4BF', '#5EEAD4', '#0D9488', '#0F766E', '#99F6E4'];
 
     const datasets = machineNames.map((name, idx) => ({
       label: name,
@@ -1649,7 +1649,7 @@
         maintainAspectRatio: false,
         scales: {
           x: { stacked: true, grid: { display: false }, ticks: { color: '#78716C' } },
-          y: { stacked: true, grid: { color: 'rgba(167, 65, 30, 0.1)' }, ticks: { color: '#78716C' } }
+          y: { stacked: true, grid: { color: 'rgba(13, 148, 136, 0.1)' }, ticks: { color: '#78716C' } }
         },
         plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } }
       }
@@ -1679,7 +1679,7 @@
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: { grid: { color: 'rgba(167, 65, 30, 0.1)' }, ticks: { color: '#78716C' } },
+          x: { grid: { color: 'rgba(13, 148, 136, 0.1)' }, ticks: { color: '#78716C' } },
           y: { grid: { display: false }, ticks: { color: '#1C1917', font: { weight: '600' } } }
         }
       }
@@ -1839,7 +1839,7 @@
         plugins: { legend: { display: false } },
         scales: {
           x: { grid: { display: false }, ticks: { color: '#1C1917', font: { weight: '600' } } },
-          y: { grid: { color: 'rgba(167, 65, 30, 0.1)' }, ticks: { color: '#78716C' } }
+          y: { grid: { color: 'rgba(13, 148, 136, 0.1)' }, ticks: { color: '#78716C' } }
         }
       }
     });
@@ -1893,7 +1893,7 @@
         plugins: { legend: { position: 'top', labels: { boxWidth: 12, color: '#1C1917' } } },
         scales: {
           x: { grid: { display: false }, ticks: { color: '#78716C' } },
-          y: { grid: { color: 'rgba(167, 65, 30, 0.1)' }, ticks: { color: '#78716C' } }
+          y: { grid: { color: 'rgba(13, 148, 136, 0.1)' }, ticks: { color: '#78716C' } }
         }
       }
     });
@@ -1998,7 +1998,7 @@
         logContainer.innerHTML = `<div style="padding:12px;text-align:center;color:#78716C;font-size:12.5px;">No actions dispatched yet. Approve the plan to see simulated PLC / SCADA write-backs.</div>`;
       } else {
         logContainer.innerHTML = ap.log.slice(-10).reverse().map(l => `
-          <div style="font-size:12px;padding:6px 0;border-bottom:1px solid rgba(167,65,30,0.1);">
+          <div style="font-size:12px;padding:6px 0;border-bottom:1px solid rgba(13, 148, 136,0.1);">
             <span style="font-family:'JetBrains Mono',monospace;color:#78716C;">[${l.time}]</span> <b>${l.machine}:</b> ${l.action}
           </div>
         `).join("");
@@ -2043,7 +2043,7 @@
         plugins: { legend: { position: 'top', labels: { boxWidth: 12, color: '#1C1917' } } },
         scales: {
           x: { grid: { display: false }, ticks: { color: '#78716C', font: { size: 10 } } },
-          y: { grid: { color: 'rgba(167, 65, 30, 0.1)' }, ticks: { color: '#78716C', font: { size: 10 } } }
+          y: { grid: { color: 'rgba(13, 148, 136, 0.1)' }, ticks: { color: '#78716C', font: { size: 10 } } }
         }
       }
     });
@@ -2081,21 +2081,21 @@
         <title>ISO 50001 Energy Audit — ${state.user.plant}</title>
         <style>
           body { font-family: 'Plus Jakarta Sans', sans-serif; color: #1C1917; padding: 40px; line-height: 1.6; }
-          h1, h2, h3 { color: #C85A32; }
+          h1, h2, h3 { color: #14B8A6; }
           table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
           th, td { border: 1px solid #DDD; padding: 8px 12px; text-align: left; }
-          th { background: #FAF5F0; }
+          th { background: #F0FDFA; }
           .kpi-box { display: inline-block; width: 22%; border: 1px solid #DDD; padding: 12px; border-radius: 8px; margin-right: 2%; vertical-align: top; }
           @media print { .no-print { display: none; } }
         </style>
       </head>
       <body>
         <div class="no-print" style="margin-bottom: 20px;">
-          <button onclick="window.print()" style="padding: 10px 20px; background: #C85A32; color: #FFF; border: none; border-radius: 6px; cursor: pointer; font-weight: 700;">🖨️ Print / Save as PDF</button>
+          <button onclick="window.print()" style="padding: 10px 20px; background: #14B8A6; color: #FFF; border: none; border-radius: 6px; cursor: pointer; font-weight: 700;">🖨️ Print / Save as PDF</button>
         </div>
         <h1>⚡ ISO 50001 & BEE Industrial Energy Audit Report</h1>
         <p><b>Facility:</b> ${state.user.plant} &nbsp;|&nbsp; <b>Lead Auditor:</b> ${state.user.name} (${state.user.role}) &nbsp;|&nbsp; <b>Date:</b> ${dateStr}</p>
-        <hr style="border:0;border-top:1px solid #C85A32;margin:20px 0;">
+        <hr style="border:0;border-top:1px solid #14B8A6;margin:20px 0;">
 
         <h3>1. Executive Billing & Demand Summary</h3>
         <div>
@@ -2364,14 +2364,14 @@
       dropZone.addEventListener("click", () => fileInput.click());
       dropZone.addEventListener("dragover", e => {
         e.preventDefault();
-        dropZone.style.borderColor = "#C85A32";
+        dropZone.style.borderColor = "#14B8A6";
       });
       dropZone.addEventListener("dragleave", () => {
-        dropZone.style.borderColor = "rgba(167, 65, 30, 0.3)";
+        dropZone.style.borderColor = "rgba(13, 148, 136, 0.3)";
       });
       dropZone.addEventListener("drop", e => {
         e.preventDefault();
-        dropZone.style.borderColor = "rgba(167, 65, 30, 0.3)";
+        dropZone.style.borderColor = "rgba(13, 148, 136, 0.3)";
         if (e.dataTransfer.files.length) handleCsvUpload(e.dataTransfer.files[0]);
       });
       fileInput.addEventListener("change", e => {
