@@ -1,0 +1,458 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Manufacturing Energy — Sign In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --walnut-950: #0F0703;
+      --walnut-900: #1A0E05;
+      --walnut-800: #2C1A0A;
+      --walnut-700: #3B2007;
+      --walnut-600: #5C3417;
+      --walnut-400: #9B6B42;
+      --walnut-200: #DDB98A;
+      --walnut-100: #F0D9B8;
+      --walnut-50:  #FBF6EE;
+      --gold-500:   #B8900C;
+      --gold-400:   #D4AF37;
+      --gold-300:   #E8C94A;
+      --gold-200:   #F4DC80;
+      --gold-100:   #FBF0CA;
+      --radius:     14px;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: linear-gradient(155deg, var(--walnut-950) 0%, var(--walnut-900) 45%, var(--walnut-800) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative gold orbs */
+    body::before {
+      content: '';
+      position: fixed;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,.09) 0%, transparent 65%);
+      top: -200px; right: -200px;
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,.06) 0%, transparent 65%);
+      bottom: -180px; left: -180px;
+      pointer-events: none;
+    }
+
+    /* Floating gold particles */
+    .particles {
+      position: fixed; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 3px; height: 3px;
+      background: var(--gold-300);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float-up linear infinite;
+    }
+    @keyframes float-up {
+      0%   { opacity: 0;   transform: translateY(0) scale(1); }
+      15%  { opacity: 0.6; }
+      85%  { opacity: 0.3; }
+      100% { opacity: 0;   transform: translateY(-80vh) scale(0.4); }
+    }
+
+    .card {
+      background: rgba(255, 252, 244, 0.97);
+      border-radius: var(--radius);
+      box-shadow: 0 32px 80px rgba(10, 5, 0, 0.6), 0 0 0 1px rgba(212,175,55,0.18);
+      width: 100%;
+      max-width: 470px;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Gold shimmer line at top of card */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-500), var(--gold-300), var(--gold-500));
+      background-size: 200% 100%;
+      animation: shimmer 2.5s linear infinite;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Header */
+    .card-header {
+      background: linear-gradient(145deg, var(--walnut-900) 0%, var(--walnut-800) 100%);
+      padding: 2rem 2rem 1.6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 80%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,.3), transparent);
+    }
+
+    .logo-ring {
+      width: 64px; height: 64px;
+      margin: 0 auto 0.8rem;
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-500));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 8px 24px rgba(212,175,55,0.4), 0 0 0 1px rgba(212,175,55,0.2);
+    }
+
+    .card-header h1 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--walnut-100);
+      letter-spacing: -0.01em;
+    }
+    .card-header p {
+      font-size: .78rem;
+      color: rgba(212,175,55,.75);
+      margin-top: .3rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      background: var(--walnut-50);
+      border-bottom: 1px solid rgba(92,52,23,.15);
+    }
+    .tab-btn {
+      flex: 1;
+      padding: .8rem;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--walnut-400);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: inherit;
+      letter-spacing: .01em;
+    }
+    .tab-btn.active {
+      background: #fff;
+      color: var(--walnut-800);
+      border-bottom: 2.5px solid var(--gold-400);
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover:not(.active) { background: var(--gold-100); color: var(--walnut-700); }
+
+    /* Form body */
+    .card-body { padding: 1.8rem 2rem 2rem; }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--walnut-600);
+      margin-bottom: .38rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    /* Password wrapper — relative so the eye icon can be positioned */
+    .pw-wrap { position: relative; }
+    .pw-wrap input { padding-right: 2.8rem; }
+
+    .pw-toggle {
+      position: absolute;
+      right: .75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--walnut-400);
+      font-size: 1.05rem;
+      line-height: 1;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      transition: color .2s;
+    }
+    .pw-toggle:hover { color: var(--gold-500); }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: .72rem 1rem;
+      border: 1.5px solid rgba(92,52,23,.2);
+      border-radius: 9px;
+      font-size: .9rem;
+      font-family: inherit;
+      color: var(--walnut-800);
+      background: #fff;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--gold-400);
+      box-shadow: 0 0 0 3px rgba(212,175,55,.18);
+    }
+    .form-group select { appearance: none; cursor: pointer; }
+
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+
+    .btn-primary {
+      width: 100%;
+      padding: .88rem;
+      background: linear-gradient(135deg, var(--gold-300), var(--gold-500));
+      color: var(--walnut-900);
+      border: none;
+      border-radius: 9px;
+      font-size: .95rem;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      margin-top: .5rem;
+      transition: all .2s;
+      letter-spacing: .01em;
+      box-shadow: 0 4px 18px rgba(212,175,55,.35);
+    }
+    .btn-primary:hover  { transform: translateY(-1.5px); box-shadow: 0 6px 24px rgba(212,175,55,.5); }
+    .btn-primary:active { transform: scale(.98); }
+
+    /* Messages */
+    .messages { margin-bottom: 1rem; }
+    .msg {
+      padding: .65rem 1rem;
+      border-radius: 8px;
+      font-size: .84rem;
+      margin-bottom: .45rem;
+      font-weight: 600;
+    }
+    .msg-error   { background: #FDE8E4; color: #9B2A18; border-left: 4px solid #B91C1C; }
+    .msg-success { background: #E6F4EA; color: #1A6630; border-left: 4px solid #2E7D32; }
+    .msg-info    { background: var(--gold-100); color: var(--walnut-700); border-left: 4px solid var(--gold-400); }
+
+    .alt-link {
+      text-align: center;
+      margin-top: 1.1rem;
+      font-size: .82rem;
+      color: var(--walnut-400);
+    }
+    .alt-link a { color: var(--gold-500); font-weight: 700; text-decoration: none; }
+    .alt-link a:hover { text-decoration: underline; }
+
+    /* Footer brand */
+    .card-footer {
+      text-align: center;
+      padding: .75rem 2rem 1rem;
+      font-size: .72rem;
+      color: var(--walnut-400);
+      border-top: 1px solid rgba(92,52,23,.1);
+      background: var(--walnut-50);
+    }
+    .card-footer b { color: var(--gold-500); }
+
+    @media (max-width: 480px) {
+      .row-2 { grid-template-columns: 1fr; }
+      .card-body { padding: 1.4rem 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating gold particles -->
+<div class="particles" id="particles"></div>
+
+<div class="card">
+  <!-- Header -->
+  <div class="card-header">
+    <div class="logo-ring">⚡</div>
+    <h1>Smart Manufacturing Energy</h1>
+    <p>Industrial Intelligence Platform</p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn {% if form_type == 'login' %}active{% endif %}"
+            onclick="window.location='/login/'">Sign In</button>
+    <button class="tab-btn {% if form_type == 'register' %}active{% endif %}"
+            onclick="window.location='/register/'">Create Account</button>
+  </div>
+
+  <div class="card-body">
+
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+      <div class="msg
+        {% if message.tags == 'error' %}msg-error
+        {% elif message.tags == 'success' %}msg-success
+        {% else %}msg-info{% endif %}">
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- ════════ LOGIN FORM ════════ -->
+    {% if form_type == 'login' %}
+    <form method="post" action="/login/">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username"
+               placeholder="Enter your username" required autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="password" name="password"
+                 placeholder="Enter your password" required autocomplete="current-password" />
+          <button type="button" class="pw-toggle" onclick="togglePw('password','icon-login')"
+                  title="Show / hide password">
+            <span id="icon-login">👁</span>
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="btn-primary">Sign In →</button>
+    </form>
+    <div class="alt-link">
+      Don't have an account? <a href="/register/">Create one</a>
+    </div>
+
+    <!-- ════════ REGISTER FORM ════════ -->
+    {% else %}
+    <form method="post" action="/register/">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="full_name">Full Name</label>
+        <input type="text" id="full_name" name="full_name"
+               placeholder="Your full name" required autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label for="reg_username">Username</label>
+        <input type="text" id="reg_username" name="username"
+               placeholder="Choose a username" required autocomplete="username" />
+      </div>
+      <div class="row-2">
+        <div class="form-group">
+          <label for="reg_password">Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="reg_password" name="password"
+                   placeholder="Password" required autocomplete="new-password" />
+            <button type="button" class="pw-toggle" onclick="togglePw('reg_password','icon-p1')"
+                    title="Show / hide">
+              <span id="icon-p1">👁</span>
+            </button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password2">Confirm</label>
+          <div class="pw-wrap">
+            <input type="password" id="password2" name="password2"
+                   placeholder="Confirm" required autocomplete="new-password" />
+            <button type="button" class="pw-toggle" onclick="togglePw('password2','icon-p2')"
+                    title="Show / hide">
+              <span id="icon-p2">👁</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select id="role" name="role">
+            <option value="Operator">Operator</option>
+            <option value="Maintenance Engineer">Maintenance Eng.</option>
+            <option value="Plant Manager">Plant Manager</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="plant_name">Plant Name</label>
+          <input type="text" id="plant_name" name="plant_name"
+                 placeholder="e.g. Plant A" autocomplete="off" />
+        </div>
+      </div>
+      <button type="submit" class="btn-primary">Create Account →</button>
+    </form>
+    <div class="alt-link">
+      Already have an account? <a href="/login/">Sign in</a>
+    </div>
+    {% endif %}
+
+  </div>
+
+  <div class="card-footer">
+    © Developed by <b>Team Quadx Coders</b>
+  </div>
+</div>
+
+<script>
+  /* Password toggle */
+  function togglePw(inputId, iconId) {
+    const inp  = document.getElementById(inputId);
+    const icon = document.getElementById(iconId);
+    if (inp.type === 'password') {
+      inp.type = 'text';
+      icon.textContent = '🙈';
+    } else {
+      inp.type = 'password';
+      icon.textContent = '👁';
+    }
+  }
+
+  /* Floating particles */
+  (function () {
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 22; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.cssText = `
+        left:${Math.random() * 100}%;
+        bottom:${-5 + Math.random() * 10}%;
+        animation-duration:${6 + Math.random() * 10}s;
+        animation-delay:${Math.random() * 8}s;
+        width:${2 + Math.random() * 3}px;
+        height:${2 + Math.random() * 3}px;
+        opacity:0;
+      `;
+      container.appendChild(p);
+    }
+  })();
+</script>
+</body>
+</html>
