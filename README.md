@@ -17,6 +17,19 @@ python manage.py runserver
 
 Open **http://127.0.0.1:8000/** in your browser.
 
+## Default Demo Accounts
+
+| Username  | Password    | Role          |
+|-----------|-------------|---------------|
+| admin     | admin123    | Admin         |
+| manager   | manager123  | Plant Manager |
+
+> You can also register a new account at `/register/`
+
+## Django Admin Panel
+
+Access at **http://127.0.0.1:8000/admin/** (login with `admin` / `admin123`) to view and manage all registered users and their profiles.
+
 ## Project Structure
 
 ```
