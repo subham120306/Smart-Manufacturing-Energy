@@ -11,20 +11,20 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --walnut-950: #0F0703;
-      --walnut-900: #1A0E05;
-      --walnut-800: #2C1A0A;
-      --walnut-700: #3B2007;
-      --walnut-600: #5C3417;
-      --walnut-400: #9B6B42;
-      --walnut-200: #DDB98A;
-      --walnut-100: #F0D9B8;
-      --walnut-50:  #FBF6EE;
-      --gold-500:   #B8900C;
-      --gold-400:   #D4AF37;
-      --gold-300:   #E8C94A;
-      --gold-200:   #F4DC80;
-      --gold-100:   #FBF0CA;
+      --walnut-950: #020F12;
+      --walnut-900: #04161A;
+      --walnut-800: #072328;
+      --walnut-700: #0B3238;
+      --walnut-600: #155E63;
+      --walnut-400: #2E9A9A;
+      --walnut-200: #99E0D6;
+      --walnut-100: #CCF5EE;
+      --walnut-50:  #F0FDFA;
+      --gold-500:   #0D9488;
+      --gold-400:   #14B8A6;
+      --gold-300:   #2DD4BF;
+      --gold-200:   #5EEAD4;
+      --gold-100:   #CCFBF1;
       --radius:     14px;
     }
 
@@ -40,13 +40,13 @@
       overflow: hidden;
     }
 
-    /* Decorative gold orbs */
+    /* Decorative teal orbs */
     body::before {
       content: '';
       position: fixed;
       width: 600px; height: 600px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(212,175,55,.09) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(20, 184, 166,.09) 0%, transparent 65%);
       top: -200px; right: -200px;
       pointer-events: none;
     }
@@ -55,12 +55,12 @@
       position: fixed;
       width: 500px; height: 500px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(212,175,55,.06) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(20, 184, 166,.06) 0%, transparent 65%);
       bottom: -180px; left: -180px;
       pointer-events: none;
     }
 
-    /* Floating gold particles */
+    /* Floating particles */
     .particles {
       position: fixed; inset: 0; pointer-events: none; overflow: hidden;
     }
@@ -80,9 +80,9 @@
     }
 
     .card {
-      background: rgba(255, 252, 244, 0.97);
+      background: rgba(240, 253, 250, 0.97);
       border-radius: var(--radius);
-      box-shadow: 0 32px 80px rgba(10, 5, 0, 0.6), 0 0 0 1px rgba(212,175,55,0.18);
+      box-shadow: 0 32px 80px rgba(2, 15, 18, 0.6), 0 0 0 1px rgba(20, 184, 166,0.18);
       width: 100%;
       max-width: 470px;
       overflow: hidden;
@@ -90,7 +90,7 @@
       z-index: 1;
     }
 
-    /* Gold shimmer line at top of card */
+    /* Shimmer line at top of card */
     .card::before {
       content: '';
       position: absolute;
@@ -118,7 +118,7 @@
       position: absolute;
       bottom: 0; left: 50%; transform: translateX(-50%);
       width: 80%; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,.3), transparent);
+      background: linear-gradient(90deg, transparent, rgba(20, 184, 166,.3), transparent);
     }
 
     .logo-ring {
@@ -130,7 +130,7 @@
       align-items: center;
       justify-content: center;
       font-size: 2rem;
-      box-shadow: 0 8px 24px rgba(212,175,55,0.4), 0 0 0 1px rgba(212,175,55,0.2);
+      box-shadow: 0 8px 24px rgba(20, 184, 166,0.4), 0 0 0 1px rgba(20, 184, 166,0.2);
     }
 
     .card-header h1 {
@@ -141,7 +141,7 @@
     }
     .card-header p {
       font-size: .78rem;
-      color: rgba(212,175,55,.75);
+      color: rgba(20, 184, 166,.75);
       margin-top: .3rem;
       font-weight: 600;
       text-transform: uppercase;
@@ -152,7 +152,7 @@
     .tabs {
       display: flex;
       background: var(--walnut-50);
-      border-bottom: 1px solid rgba(92,52,23,.15);
+      border-bottom: 1px solid rgba(21, 94, 99,.15);
     }
     .tab-btn {
       flex: 1;
@@ -215,7 +215,7 @@
     .form-group select {
       width: 100%;
       padding: .72rem 1rem;
-      border: 1.5px solid rgba(92,52,23,.2);
+      border: 1.5px solid rgba(21, 94, 99,.2);
       border-radius: 9px;
       font-size: .9rem;
       font-family: inherit;
@@ -227,7 +227,7 @@
     .form-group input:focus,
     .form-group select:focus {
       border-color: var(--gold-400);
-      box-shadow: 0 0 0 3px rgba(212,175,55,.18);
+      box-shadow: 0 0 0 3px rgba(20, 184, 166,.18);
     }
     .form-group select { appearance: none; cursor: pointer; }
 
@@ -247,9 +247,9 @@
       margin-top: .5rem;
       transition: all .2s;
       letter-spacing: .01em;
-      box-shadow: 0 4px 18px rgba(212,175,55,.35);
+      box-shadow: 0 4px 18px rgba(20, 184, 166,.35);
     }
-    .btn-primary:hover  { transform: translateY(-1.5px); box-shadow: 0 6px 24px rgba(212,175,55,.5); }
+    .btn-primary:hover  { transform: translateY(-1.5px); box-shadow: 0 6px 24px rgba(20, 184, 166,.5); }
     .btn-primary:active { transform: scale(.98); }
 
     /* Messages */
@@ -280,7 +280,7 @@
       padding: .75rem 2rem 1rem;
       font-size: .72rem;
       color: var(--walnut-400);
-      border-top: 1px solid rgba(92,52,23,.1);
+      border-top: 1px solid rgba(21, 94, 99,.1);
       background: var(--walnut-50);
     }
     .card-footer b { color: var(--gold-500); }
@@ -293,7 +293,7 @@
 </head>
 <body>
 
-<!-- Floating gold particles -->
+<!-- Floating particles -->
 <div class="particles" id="particles"></div>
 
 <div class="card">
